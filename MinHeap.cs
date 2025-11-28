@@ -159,4 +159,29 @@ class MinHeap
     {
         return heap.Count;
     }
+
+    public void insert(int data) {
+        heap.Add(data);
+        siftUp(heap.Count - 1);
+    }
+
+    private void siftUp(int i) {
+        if (i == 0) return;
+
+        int parent = heap[getParentIndex(i)];
+        int current = heap[i];
+
+        if (current <= parent) {
+            heap[getParentIndex(i)] = current;
+            heap[i] = parent;
+            siftUp(getParentIndex(i));
+        }
+
+        return;
+    }
+    
+    private int getParentIndex(int i) {
+        return (i - 1) / 2;
+    }
+
 }
